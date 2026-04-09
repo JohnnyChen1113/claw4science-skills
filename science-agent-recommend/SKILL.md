@@ -132,3 +132,18 @@ curl -s "https://claw4science.org/api/projects"
 - **API**: [claw4science.org/api/projects](https://claw4science.org/api/projects)
 - **Contribute a blog post**: [claw4science.org/contribute](https://claw4science.org/contribute)
 - **Same-name projects**: [claw4science.org/samename](https://claw4science.org/samename)
+
+## Executable Scripts
+
+This skill includes runnable scripts for real API-powered recommendations:
+
+```bash
+# Get recommendations by domain (uses live Claw4Science API)
+bash scripts/recommend.sh biomedicine
+bash scripts/recommend.sh drug-discovery
+bash scripts/recommend.sh paper-writing
+bash scripts/recommend.sh all
+
+# Search for specific tools
+bash scripts/search.sh "protein folding"
+```

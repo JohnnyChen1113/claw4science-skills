@@ -126,3 +126,15 @@ When comparing projects NOT in the disambiguation database:
 - **Full Directory**: [claw4science.org](https://claw4science.org)
 - **API**: [claw4science.org/api/projects](https://claw4science.org/api/projects)
 - **Blog on naming collisions**: [claw4science.org/blog/bioclaw-vs-bloclaw-name-collision](https://claw4science.org/blog/bioclaw-vs-bloclaw-name-collision)
+
+## Executable Scripts
+
+This skill includes runnable scripts for real API-powered comparison:
+
+```bash
+# Compare two projects side by side (uses live Claw4Science API)
+bash scripts/compare.sh Runchuan-BU/BioClaw qinheming/BIoClaw
+
+# Search for projects to compare
+bash scripts/search.sh "BioClaw"
+```

@@ -113,3 +113,15 @@ Returns all projects with title, description, repo, group, tags, and stars.
 - **Same-name Disambiguation**: [claw4science.org/samename](https://claw4science.org/samename)
 - **Blog**: [claw4science.org/blog](https://claw4science.org/blog)
 - **Contribute**: [claw4science.org/contribute](https://claw4science.org/contribute)
+
+## Executable Scripts
+
+This skill includes runnable scripts for real API-powered matching:
+
+```bash
+# Match paper methods to AI agents (uses live Claw4Science API)
+bash scripts/paper-match.sh "We performed scRNA-seq analysis followed by molecular docking with AutoDock"
+
+# General search across all projects
+bash scripts/search.sh "drug discovery"
+```
