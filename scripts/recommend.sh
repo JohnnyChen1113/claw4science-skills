@@ -21,7 +21,7 @@ if [ -z "$DOMAIN" ]; then
   exit 0
 fi
 
-curl -s "https://claw4science.org/api/projects" | python3 -c "
+bash "$(dirname "$0")/get-data.sh" | python3 -c "
 import json, sys
 
 domain = '$DOMAIN'.lower()
@@ -59,7 +59,7 @@ keywords = domain_keywords.get(domain, [domain])
 
 matches = []
 for p in data.get('projects', []):
-    if domain == 'all' or p.get('group', '') in groups:
+    if domain == 'all' or p.get('category', '') in groups:
         matches.append(p)
     elif any(kw in f\"{p.get('title','')} {p.get('description','')} {' '.join(p.get('tags',[]))}\".lower() for kw in keywords):
         matches.append(p)
@@ -88,7 +88,7 @@ for m in matches[:15]:
     repo = m.get('repo', '')
     stars = m.get('static_stars', '?')
     desc = m.get('description', '')[:100]
-    group = m.get('group', '')
+    group = m.get('category', '')
     anchor = repo.lower().replace('/', '-').replace('_', '-') if repo else ''
     print(f'  ⭐ {stars:>6}  {title} [{group}]')
     print(f'           {desc}...')

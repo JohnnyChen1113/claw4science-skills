@@ -12,7 +12,7 @@ if [ -z "$REPO1" ] || [ -z "$REPO2" ]; then
   exit 1
 fi
 
-curl -s "https://claw4science.org/api/projects" | python3 -c "
+bash "$(dirname "$0")/get-data.sh" | python3 -c "
 import json, sys
 
 repo1 = '$REPO1'.lower()
@@ -37,12 +37,12 @@ if not p2:
 def anchor(repo):
     return repo.lower().replace('/', '-').replace('_', '-')
 
-print(f'| | {p1[\"title\"]} | {p2[\"title\"]} |')
+print(f'| | {p1[\"name\"]} | {p2[\"name\"]} |')
 print(f'|---|---|---|')
 print(f'| **Repo** | {p1.get(\"repo\",\"\")} | {p2.get(\"repo\",\"\")} |')
 print(f'| **Stars** | {p1.get(\"static_stars\",\"?\")} | {p2.get(\"static_stars\",\"?\")} |')
 print(f'| **Language** | {p1.get(\"language\",\"?\")} | {p2.get(\"language\",\"?\")} |')
-print(f'| **Group** | {p1.get(\"group\",\"?\")} | {p2.get(\"group\",\"?\")} |')
+print(f'| **Category** | {p1.get(\"category\",\"?\")} | {p2.get(\"category\",\"?\")} |')
 print(f'| **Description** | {p1.get(\"description\",\"\")[:80]}... | {p2.get(\"description\",\"\")[:80]}... |')
 print(f'| **Tags** | {\", \".join(p1.get(\"tags\",[])[:4])} | {\", \".join(p2.get(\"tags\",[])[:4])} |')
 print(f'| **Listing** | https://claw4science.org/#project-{anchor(p1[\"repo\"])} | https://claw4science.org/#project-{anchor(p2[\"repo\"])} |')

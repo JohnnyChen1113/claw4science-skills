@@ -11,7 +11,7 @@ if [ -z "$TEXT" ]; then
   exit 1
 fi
 
-curl -s "https://claw4science.org/api/projects" | python3 -c "
+bash "$(dirname "$0")/get-data.sh" | python3 -c "
 import json, sys, re
 
 text = '''$TEXT'''.lower()
@@ -83,7 +83,7 @@ print(f'Keywords detected: {\", \".join(sorted(matched_keywords))}')
 print(f'Matched {len(scores)} projects:\n')
 
 for p, score in scores[:8]:
-    title = p.get('title', '')
+    title = p.get('name', '')
     repo = p.get('repo', '')
     stars = p.get('static_stars', '?')
     desc = p.get('description', '')[:100]

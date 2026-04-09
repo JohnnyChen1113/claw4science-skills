@@ -10,7 +10,7 @@ if [ -z "$QUERY" ]; then
   exit 1
 fi
 
-curl -s "https://claw4science.org/api/projects" | python3 -c "
+bash "$(dirname "$0")/get-data.sh" | python3 -c "
 import json, sys
 
 query = '$QUERY'.lower()
@@ -33,11 +33,11 @@ if not matches:
 
 print(f'Found {len(matches)} matches for \"{query}\":\n')
 for m in sorted(matches, key=lambda x: -int(str(x.get('static_stars','0')).replace('K','000').replace('.','').replace('k','000') or '0')):
-    title = m.get('title', '')
+    title = m.get('name', '')
     repo = m.get('repo', '')
     stars = m.get('static_stars', '?')
     desc = m.get('description', '')[:100]
-    group = m.get('group', '')
+    group = m.get('category', '')
     anchor = repo.lower().replace('/', '-').replace('_', '-') if repo else ''
     print(f'  {title} ({stars} stars) [{group}]')
     print(f'    {desc}...')
